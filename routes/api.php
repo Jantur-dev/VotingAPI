@@ -20,8 +20,7 @@ use App\Http\Controllers\VoterController;
 //     return $request->user();
 // });
 
-Route::get('/index', [CandidateController::class, 'index'])->middleware(['verifyEmail', 'login']);;
-
+Route::get('/index', [CandidateController::class, 'index'])->middleware(['verifyEmail', 'login']);
 // Route::post('/register', [VoterController::class, 'register']);
 Route::post('/login',[VoterController::class, 'login'])->middleware('verifyEmail');
 Route::post('/logout',[VoterController::class, 'logout'])->middleware(['verifyEmail', 'login']);

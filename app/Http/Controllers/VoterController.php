@@ -11,7 +11,8 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-
+use Inertia\Inertia;
+use Inertia\Response;
 use function PHPSTORM_META\map;
 
 class VoterController extends Controller
@@ -19,6 +20,9 @@ class VoterController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function create(): Response {
+        return Inertia::render("Auth/Register");
+    }
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
             'nis' => 'required|string|max:5|min:5',
@@ -26,12 +30,17 @@ class VoterController extends Controller
         ]);
 
         if($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'msg' => $validator->errors()
-            ], 422);
+            return Inertia::render("Auth/Register", [
+                'errors' => $validator->errors()
+            ]);
         }
-
+        // if($validator->fails()) {
+        //     return response()->json([
+        //         'status' => false,
+        //         'msg' => $validator->errors()
+        //     ], 422);
+        // }
+        
         $data_voter = Voter::where('nis', $request->nis)->first();
         if(isset($data_voter)) {
             if($data_voter->amount_otp != 0) {

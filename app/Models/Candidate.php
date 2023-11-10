@@ -10,5 +10,10 @@ class Candidate extends Model
     use HasFactory;
 
     protected $table = 'candidates';
+    protected $primaryKey = 'nis'; 
     protected $guarded = [''];
+
+    public function voter() {
+        return $this->hasMany(Voter::class, 'candidateNis', 'nis');
+    }
 }

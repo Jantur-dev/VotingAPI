@@ -12,4 +12,8 @@ class Voter extends Model
     protected $table = 'voters';
     protected $primaryKey = 'nis';
     protected $guarded = [''];
+
+    public function candidate() {
+        return $this->belongsTo(Candidate::class, 'candidateNis', 'nis');
+    }
 }

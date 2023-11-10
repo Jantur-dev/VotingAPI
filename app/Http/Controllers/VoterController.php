@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Inertia\Inertia;
 use App\Models\Voter;
+use Inertia\Response;
+use App\Models\Candidate;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\NotifikasiEmail;
+use function PHPSTORM_META\map;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Inertia\Inertia;
-use Inertia\Response;
-use function PHPSTORM_META\map;
 
 class VoterController extends Controller
 {
@@ -217,6 +218,40 @@ class VoterController extends Controller
         return response()->json([
             'status' => false,
             'msg' => 'gagal logout, coba lagi'
+        ]);
+    }
+
+    public function vote($otp, $nis)
+    {
+        $candidate = Candidate::where('nis', $nis)->first();
+        $voter = Voter::where('otp', $otp)->first();
+        if (isset($voter) && $voter->vote_status != 'SUDAH') {
+            if (isset($candidate)) {
+                $voter->candidateNis = $candidate->nis;
+                $voter->candidate = $candidate->name;
+                $voter->vote_status = 'SUDAH';
+                $voter->update();
+
+                if ($candidate->nis == $nis) {
+                    $candidate->votes += 1;
+                    $candidate->update();
+                }
+
+                return response()->json([
+                    'status' => true,
+                    'msg' => 'Berhasil vote'
+                ]);
+            }
+
+            return response()->json([
+                'status' => false,
+                'msg' => 'Gagal vote. Coba lagi'
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'msg' => 'Gagal vote. Kamu sudah vote, tidak bisa vote 2x'
         ]);
     }
 }

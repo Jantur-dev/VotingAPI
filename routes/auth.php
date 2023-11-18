@@ -16,7 +16,7 @@ Route::middleware('guest')->group(function () {
     Route::get('register', [VoterController::class, 'create'])
                 ->name('register');
 
-    Route::post('register', [VoterController::class, 'REGIS']);
+    Route::post('register', [VoterController::class, 'register']);
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');

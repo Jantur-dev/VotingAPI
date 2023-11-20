@@ -20,7 +20,7 @@ class LoginMiddleware
                 return response()->json([
                     'status' => false,
                     'msg' => 'silahkan login'
-                ]);
+                ], 403);
             }
         }
     }

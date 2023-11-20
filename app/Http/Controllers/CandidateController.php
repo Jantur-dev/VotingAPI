@@ -18,7 +18,7 @@ class CandidateController extends Controller
                 'status' => false,
                 'msg' => 'gagal menampilkan semua kandidat. Data kosong',
                 'data' => []
-            ]);
+            ], 402);
         }
         return response()->json([
             'status' => true,

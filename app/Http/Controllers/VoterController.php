@@ -71,17 +71,14 @@ class VoterController extends Controller
             }
             return response()->json([
                 'status' => false,
-                'msg' => 'Sudah melebihi request otp, gunakan otp terakhir, tetap gagal?. Mintalah kertas dari panitia untuk vote',
-                'data' => [
-                    'otp_terakhir' => $data_voter->otp
-                ]
-            ]);
+                'msg' => 'Sudah melebihi request otp, gunakan otp terakhir, tetap gagal?. Mintalah kertas dari panitia untuk vote'
+            ], 400);
         }
 
         return response()->json([
             'status' => false,
             'msg' => 'Gagal. Coba ulangi nanti'
-        ]);
+        ], 400);
     }
 
     public function verify(Request $request) {
@@ -93,7 +90,7 @@ class VoterController extends Controller
             return response()->json([
                 'status' => false,
                 'msg' => $validator->errors()
-            ]);
+            ], 422);
         }
 
         $voter = Voter::where('otp', $request->otp)->first();
@@ -112,13 +109,13 @@ class VoterController extends Controller
                 return response()->json([
                     'status' => false,
                     'msg' => 'OTP tidak valid atau sudah kadaluwarsa'
-                ]);
+                ], 406);
             }
         }
         return response()->json([
             'status' => false,
             'msg' => 'OTP tidak tersedia.'
-        ]);
+        ], 400);
     }
 
     public function resendOtp(Request $request) {
@@ -161,17 +158,14 @@ class VoterController extends Controller
             }
             return response()->json([
                 'status' => false,
-                'msg' => 'Sudah melebihi request otp, gunakan otp terakhir, tetap gagal?. Mintalah kertas dari panitia untuk vote',
-                'data' => [
-                    'otp_terakhir' => $data_voter->otp
-                ]
-            ]);
+                'msg' => 'Sudah melebihi request otp, gunakan otp terakhir, tetap gagal?. Mintalah kertas dari panitia untuk vote'
+            ], 400);
         }
 
         return response()->json([
             'status' => false,
             'msg' => 'Gagal kirim ulang. Coba lagi'
-        ]);
+        ], 406);
     }
 
     public function login(Request $request) {
@@ -200,7 +194,7 @@ class VoterController extends Controller
         return response()->json([
             'status' => false,
             'msg' => 'gagal login, coba lagi'
-        ]);
+        ], 400);
     }
 
     public function logout(Request $request){
@@ -218,7 +212,7 @@ class VoterController extends Controller
         return response()->json([
             'status' => false,
             'msg' => 'gagal logout, coba lagi'
-        ]);
+        ], 400);
     }
 
     public function vote($otp, $nis)
@@ -246,12 +240,12 @@ class VoterController extends Controller
             return response()->json([
                 'status' => false,
                 'msg' => 'Gagal vote. Coba lagi'
-            ]);
+            ], 400);
         }
 
         return response()->json([
             'status' => false,
             'msg' => 'Gagal vote. Kamu sudah vote, tidak bisa vote 2x'
-        ]);
+        ], 422);
     }
 }

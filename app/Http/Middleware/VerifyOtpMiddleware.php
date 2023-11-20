@@ -20,7 +20,7 @@ class VerifyOtpMiddleware
                 return response()->json([
                     'status' => false,
                     'msg' => 'harap login atau verifikasi email lebih dulu.'
-                ]);
+                ],401);
             }
         }
     }

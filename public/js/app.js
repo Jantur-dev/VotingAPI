@@ -12569,43 +12569,6 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
   forceTLS: ((_process$env$MIX_PUSH4 = "https") !== null && _process$env$MIX_PUSH4 !== void 0 ? _process$env$MIX_PUSH4 : 'https') === 'https',
   enabledTransports: ['ws', 'wss']
 });
-
-// Fungsi untuk menyimpan pesan ke dalam localStorage
-function saveMessage(message) {
-  var messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
-  messages.push(message);
-  localStorage.setItem('chatMessages', JSON.stringify(messages));
-}
-
-// Fungsi untuk menampilkan pesan dari localStorage
-function displayMessages() {
-  var dataMessage = document.getElementById('data-message');
-  var messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
-
-  // Menampilkan pesan dari localStorage
-  messages.forEach(function (message) {
-    var newMessage = document.createElement('div');
-    newMessage.textContent = message;
-    dataMessage.appendChild(newMessage);
-  });
-}
-
-// Panggil fungsi displayMessages saat halaman dimuat
-displayMessages();
-window.Echo.channel('channel-chat').listen('ChatEvent', function (event) {
-  // console.log(event.message.message);
-  // Mendapatkan elemen dengan ID data-message
-  var dataMessage = document.getElementById('data-message');
-
-  // Membuat elemen baru untuk menyimpan pesan
-  var newMessage = document.createElement('div');
-  newMessage.textContent = event.message.message;
-  // Menambahkan elemen baru ke dalam div dengan ID data-message
-  dataMessage.appendChild(newMessage);
-
-  // Menyimpan pesan baru ke dalam localStorage
-  saveMessage(event.message.message);
-});
 })();
 
 /******/ })()

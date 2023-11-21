@@ -4,7 +4,8 @@ import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import axios from 'axios';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -17,15 +18,60 @@ export default function Register() {
         };
     }, []);
 
+    let err_message = sessionStorage.getItem('err_message') || '';
+    setTimeout(() => {
+        sessionStorage.removeItem('err_message');
+        sessionStorage.removeItem('suc_message');
+    }, 1000);
+
     const submit = (e) => {
         e.preventDefault();
-
-        post(route("register"));
+        // post(route("register"));
+        // Melakukan fetch API POST dengan Axios
+        axios.post('http://127.0.0.1:8000/api/register', dataToSend, {
+            headers: {
+                'Content-Type': 'application/json'
+                // tambahkan header lain jika diperlukan
+            }
+        })
+            .then(response => {
+                // Memeriksa respons dari API
+                if (response.data.status === true) {
+                    // Jika registrasi berhasil (status true), redirect ke halaman lain
+                    window.location.href = `http://127.0.0.1:8000/otp/verify/${dataToSend.nis}`;
+                }
+            })
+            .catch(error => {
+                // Menangani kesalahan jaringan atau kesalahan lainnya
+                // console.error('There has been a problem with your Axios operation:', error);
+                if(error.response.status == 429) {
+                    window.location.href = `http://127.0.0.1:8000/otp/verify/${dataToSend.nis}`
+                } else if (error.response.status == 422) {
+                    sessionStorage.setItem('err_message', error.response.data.msg.nis);
+                    err_message = error.response.data.msg.nis;
+                    window.location.href = 'http://127.0.0.1:8000/register'; 
+                } else {
+                    sessionStorage.setItem('err_message', error.response.data.msg);
+                    err_message = error.response.data.msg;
+                    window.location.href = 'http://127.0.0.1:8000/register';
+                }
+                // console.error(error.response.status == 429);
+                // Redirect ke halaman yang sama jika terjadi kesalahan
+            });
     };
+
+    const dataToSend = {
+        nis: data.nis,
+        email: data.email
+    };
+
+
+    console.log(data);
 
     return (
         <GuestLayout>
             <Head title="Register" />
+            {err_message && <p className='text-rose-600'>{err_message}</p>}
             <form onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="nis" value="Nis" />

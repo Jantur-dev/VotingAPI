@@ -22,7 +22,7 @@ use App\Http\Controllers\VoterController;
 
 Route::get('/index', [CandidateController::class, 'index'])->middleware(['verifyEmail', 'login']);
 Route::post('/register', [VoterController::class, 'register']);
-Route::post('/login',[VoterController::class, 'login'])->middleware('verifyEmail');
+Route::post('/login',[VoterController::class, 'login']);
 Route::post('/logout',[VoterController::class, 'logout'])->middleware(['verifyEmail', 'login']);
 Route::post('/resend-otp', [VoterController::class, 'resendOtp']);
-Route::post('/otp/verify',[VoterController::class, 'verify']);
+Route::post('/otp/verify/{nis}',[VoterController::class, 'verify'])->middleware('hasOtp');

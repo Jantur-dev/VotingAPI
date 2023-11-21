@@ -104,7 +104,7 @@
                     message.addClass('is-invalid');
                 } else {
                     console.log('Sending data...');
-                    axios.post("{{ route('send.realtime.chat2') }}", {
+                    axios.post("{{ route('send.realtime.chat') }}", {
                         'nama': nama.val(),
                         'message': message.val()
                     }, {
@@ -142,6 +142,7 @@
             channel.listen('ChatEvent', function(event) {
                 // Pesan ini dari penerima atau bukan ? true jika beda : false jika sama 
                 event.message.sender = (event.message.nama !== nama.val());
+                console.log(event);
 
                 // Mengecek apakah pesan sudah ada di localStorage
                 const existingData = storedData.find(item => (

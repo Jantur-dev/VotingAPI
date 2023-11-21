@@ -40,6 +40,15 @@ Route::get('/chat', function(){
     return view('chat');
 })->name('chat');
 
+Route::get('/chat2', function(){
+    return view('chat2');
+})->name('chat2');
+
 Route::post('/chat',[RealtimeController::class, 'send_message'])->name('send.realtime.chat');
+Route::post('/chat2',[RealtimeController::class, 'send_message'])->name('send.realtime.chat2');
+
+Route::get('/otp/verify/{nis}', function($nis) {
+    return Inertia::render('Auth/VerifyEmail', ['nis' => $nis]);
+});
 
 require __DIR__.'/auth.php';

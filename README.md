@@ -1,3 +1,47 @@
+# How To Install
+
+## Installation
+
+1. Install VotingAPI main branch
+
+```bash
+  git clone https://github.com/Jantur-dev/VotingAPI.git
+  cd VotingAPI
+  composer install && npm i
+```
+
+2. Install VotingAPI specific branch
+   
+```bash
+  git clone -b <branchName> https://github.com/Jantur-dev/VotingAPI.git
+  cd VotingAPI
+  composer install && npm i
+```
+
+## Run this project
+1. 
+```bash
+  cp .env.example .env
+  php artisan key:generate
+```
+
+2. Configure your app keys pusher to .env
+
+3. run php server
+```bash
+  php artisan ser
+```
+
+4. run npm
+```bash
+  npm run dev
+```
+
+### If there are changes to bootstrap.js. Every change you have to
+```bash
+  npm run develop
+```
+
 ---
 - Vote API Lara
 

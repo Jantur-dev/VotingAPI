@@ -76,7 +76,7 @@
       - Method: POST
       - URL: [http://127.0.0.1:8000/api/otp/verify](http://127.0.0.1:8000/api/otp/verify)
       - Headers:
-        - OTP: 4175
+        - NIS: 20199
       - Body:
         ```json
         {
@@ -92,7 +92,7 @@
       - Method: POST
       - URL: [http://127.0.0.1:8000/api/resend-otp](http://127.0.0.1:8000/api/resend-otp)
       - Headers:
-        - OTP: 3229 (Disabled)
+        - NIS: 20199 (Disabled)
       - Body:
         ```json
         {

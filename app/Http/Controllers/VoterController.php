@@ -30,17 +30,17 @@ class VoterController extends Controller
             'email' => 'required|string|email|'
         ]);
 
-        if($validator->fails()) {
-            return Inertia::render("Auth/Register", [
-                'errors' => $validator->errors()
-            ]);
-        }
         // if($validator->fails()) {
-        //     return response()->json([
-        //         'status' => false,
-        //         'msg' => $validator->errors()
-        //     ], 422);
+        //     return Inertia::render("Auth/Register", [
+        //         'errors' => $validator->errors()
+        //     ]);
         // }
+        if($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'msg' => $validator->errors()
+            ], 422);
+        }
         
         $data_voter = Voter::where('nis', $request->nis)->first();
         if(isset($data_voter)) {
@@ -71,17 +71,17 @@ class VoterController extends Controller
             }
             return response()->json([
                 'status' => false,
-                'msg' => 'Sudah melebihi request otp, gunakan otp terakhir, tetap gagal?. Mintalah kertas dari panitia untuk vote'
-            ], 400);
+                'msg' => 'Sudah melebihi request otp, gunakan otp terakhir, tetap gagal?. Mintalah kertas dari panitia untuk vote' 
+            ], 429);
         }
 
         return response()->json([
             'status' => false,
-            'msg' => 'Gagal. Coba ulangi nanti'
+            'msg' => 'NIS tidak ditemuakn, gagal. Coba ulangi'
         ], 400);
     }
 
-    public function verify(Request $request) {
+    public function verify(Request $request, $nis) {
         $validator = Validator::make($request->all(), [
             'otp' => 'required|max:4|min:4'
         ]);
@@ -93,28 +93,35 @@ class VoterController extends Controller
             ], 422);
         }
 
-        $voter = Voter::where('otp', $request->otp)->first();
+        $voter = Voter::where('nis', $nis)->first();
         if(isset($voter)) {
-            if($voter->otp === $request->otp && $voter->otp_expired_at >= now()->timezone('Asia/Jakarta')) {
-                $voter->email_verified_at = now()->timezone('Asia/Jakarta');
-                $voter->amount_otp = 3;
-                $voter->active_status = '1';
-                $voter->update();
-                
-                return response()->json([
-                    'status' => true,
-                    'msg' => 'OTP valid. Voter berhasil diverifikasi.'
-                ]);
+            if($voter->otp === $request->otp) {
+                if($voter->otp === $request->otp && $voter->otp_expired_at >= now()->timezone('Asia/Jakarta')) {
+                    $voter->email_verified_at = now()->timezone('Asia/Jakarta');
+                    $voter->amount_otp = 3;
+                    $voter->active_status = '1';
+                    $voter->update();
+                    
+                    return response()->json([
+                        'status' => true,
+                        'msg' => 'OTP valid. Voter berhasil diverifikasi.'
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'msg' => 'OTP tidak valid atau sudah kadaluwarsa'
+                    ], 406);
+                }
             } else {
                 return response()->json([
                     'status' => false,
-                    'msg' => 'OTP tidak valid atau sudah kadaluwarsa'
-                ], 406);
+                    'msg' => 'OTP tidak valid.'
+                ], 400);
             }
         }
         return response()->json([
             'status' => false,
-            'msg' => 'OTP tidak tersedia.'
+            'msg' => 'NIS tidak tersedia.'
         ], 400);
     }
 
@@ -170,8 +177,8 @@ class VoterController extends Controller
 
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
-            'nis' => 'required|min:5|max:5|string',
-            'email' => 'required|email|string'
+            'email' => 'required|email|string',
+            'otp' => 'required|min:4|max:4|string'
         ]);
 
         if($validator->fails()) {

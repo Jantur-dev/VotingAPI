@@ -9,7 +9,7 @@ class Voter extends Model
 {
     use HasFactory;
 
-    protected $table = 'voters';
+    protected $table = 'users';
     protected $primaryKey = 'nis';
     protected $guarded = [''];
 

@@ -1,3 +1,48 @@
+# How To Install
+
+## Installation
+
+1. Install VotingAPI main branch
+
+```bash
+  git clone https://github.com/Jantur-dev/VotingAPI.git
+  cd VotingAPI
+  composer install && npm i
+```
+
+2. Install VotingAPI specific branch
+   
+```bash
+  git clone -b <branchName> https://github.com/Jantur-dev/VotingAPI.git
+  cd VotingAPI
+  composer install && npm i
+```
+
+## Run this project
+1. 
+```bash
+  cp .env.example .env
+  php artisan key:generate
+```
+
+2. Configure your app keys pusher to .env
+
+3. run php server
+```bash
+  php artisan ser
+```
+
+4. run npm
+```bash
+  npm run dev
+```
+
+### If there are changes to bootstrap.js. Every change you have to
+```bash
+  npm run develop
+```
+---
+[Download Vote API Lara.postman_collection.json](https://drive.google.com/drive/folders/1LspgV7AnJYVblTu0iXoZWHi9FFQCsdAd)
 ---
 - Vote API Lara
 
@@ -32,7 +77,7 @@
       - Method: POST
       - URL: [http://127.0.0.1:8000/api/otp/verify](http://127.0.0.1:8000/api/otp/verify)
       - Headers:
-        - OTP: 4175
+        - NIS: 20199
       - Body:
         ```json
         {
@@ -48,7 +93,7 @@
       - Method: POST
       - URL: [http://127.0.0.1:8000/api/resend-otp](http://127.0.0.1:8000/api/resend-otp)
       - Headers:
-        - OTP: 3229 (Disabled)
+        - NIS: 20199 (Disabled)
       - Body:
         ```json
         {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CandidateController;
@@ -26,3 +27,8 @@ Route::post('/login',[VoterController::class, 'login']);
 Route::post('/logout',[VoterController::class, 'logout'])->middleware(['verifyEmail', 'login']);
 Route::post('/resend-otp', [VoterController::class, 'resendOtp']);
 Route::post('/otp/verify/{nis}',[VoterController::class, 'verify'])->middleware('hasOtp');
+Route::post('/vote', [VoterController::class, 'vote'])->middleware(['verifyEmail', 'login']);
+
+// admin
+Route::get('/admin/index', [AdminController::class, 'index'])->middleware('admin');
+Route::get('/admin/candidates', [AdminController::class, 'dataCandidate'])->middleware('admin');

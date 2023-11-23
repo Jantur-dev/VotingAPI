@@ -1,21 +1,49 @@
+import { useEffect, useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import axios from 'axios';
 
 export default function Dashboard({ auth }) {
-    return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
-        >
-            <Head title="Dashboard" />
+    const [data, setData] = useState(null);
+    let errMessage = sessionStorage.getItem('err_message') || '';
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">You're logged in!</div>
-                    </div>
+    useEffect(() => {
+        let otpLogin = sessionStorage.getItem('otp_login') || '';
+
+        axios.get('http://127.0.0.1:8000/api/index', {
+            headers: {
+                'Content-Type': 'application/json',
+                'OTP': otpLogin
+            }
+        })
+            .then(response => {
+                if (response.data.status === true) {
+                    setData(response.data);
+                }
+            })
+            .catch(error => {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    sessionStorage.setItem('err_message', error.response.data.msg);
+                    errMessage = error.response.data.msg;
+                    window.location.href = 'http://127.0.0.1:8000/login';
+                }
+            });
+    }, []);
+
+    return (
+        <>
+            <h1>Canditates</h1>
+            {data ? (
+                <div>
+                    {data.data.map((item, index) => (
+                        <div key={index}>
+                            <p>Name: {item.name}</p>
+                        </div>
+                    ))}
                 </div>
-            </div>
-        </AuthenticatedLayout>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </>
     );
 }

@@ -27,23 +27,18 @@ export default function Register() {
     const submit = (e) => {
         e.preventDefault();
         // post(route("register"));
-        // Melakukan fetch API POST dengan Axios
         axios.post('http://127.0.0.1:8000/api/register', dataToSend, {
             headers: {
                 'Content-Type': 'application/json'
-                // tambahkan header lain jika diperlukan
             }
         })
             .then(response => {
-                // Memeriksa respons dari API
                 if (response.data.status === true) {
                     // Jika registrasi berhasil (status true), redirect ke halaman lain
                     window.location.href = `http://127.0.0.1:8000/otp/verify/${dataToSend.nis}`;
                 }
             })
             .catch(error => {
-                // Menangani kesalahan jaringan atau kesalahan lainnya
-                // console.error('There has been a problem with your Axios operation:', error);
                 if(error.response.status == 429) {
                     window.location.href = `http://127.0.0.1:8000/otp/verify/${dataToSend.nis}`
                 } else if (error.response.status == 422) {

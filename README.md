@@ -42,6 +42,7 @@
   npm run develop
 ```
 ---
+### there is a send email feature, make sure to fill in the .env.
 [Download Vote API Lara.postman_collection.json](https://drive.google.com/drive/folders/1LspgV7AnJYVblTu0iXoZWHi9FFQCsdAd)
 ---
 - Vote API Lara

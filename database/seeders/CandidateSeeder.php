@@ -15,8 +15,14 @@ class CandidateSeeder extends Seeder
     public function run(): void
     {
         DB::table('candidates')->insert([
-            'nis' => '20189',
-            'name' => 'Joko Susilo'
+            [
+                'nis' => '20189',
+                'name' => 'Joko Susilo'
+            ],
+            [
+                'nis' => '20190',
+                'name' => 'Andi Sucipto'
+            ],
         ]);
     }
 }

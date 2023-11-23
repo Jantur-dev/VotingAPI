@@ -21,7 +21,7 @@ class HasOtp
             $voter = Voter::where('nis', $headerNis)->first();
             if(isset($voter)) {
                 return $next($request);
-            } else {
+            } else if(empty($voter->otp)) {
                 return response()->json([
                     'status' => false,
                     'msg' => 'NIS tidak ditemukan.'

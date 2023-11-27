@@ -21,7 +21,7 @@ class CandidateSeeder extends Seeder
             ],
             [
                 'nis' => '20190',
-                'name' => 'Andi Sucipto'
+                'name' => 'Dandus Supranus'
             ],
         ]);
     }

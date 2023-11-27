@@ -184,6 +184,7 @@ class VoterController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'nis' => 'required|min:5|max:5',
             'email' => 'required|email|string',
             'otp' => 'required|min:4|max:4|string'
         ]);
@@ -195,13 +196,14 @@ class VoterController extends Controller
             ], 422);
         }
 
-        $voter = Voter::where('otp', $request->otp)->where('email', $request->email)->whereNotNull('email_verified_at')->first();
+        $voter = Voter::where('otp', $request->otp)->where('email', $request->email)->where('nis', $request->nis)->whereNotNull('email_verified_at')->first();
         if (isset($voter)) {
             $voter->active_status = '1';
             $voter->update();
             return response()->json([
                 'status' => true,
-                'msg' => 'Berhasil login'
+                'msg' => 'Berhasil login',
+                'data' => $voter
             ]);
         }
 

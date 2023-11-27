@@ -20,7 +20,7 @@
     }
 
     img {
-      width: 500px;
+      width: 75%;
     }
   </style>
 </head>

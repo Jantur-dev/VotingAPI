@@ -31,7 +31,8 @@ export default function VerifyEmail({ status, nis }) {
         })
             .then(response => {
                 if (response.data.status === true) {
-                    window.location.href = `http://127.0.0.1:8000/login`;
+                    sessionStorage.setItem('otp_login', data.otp);
+                    window.location.href = `http://127.0.0.1:8000/dashboard`;
                 }
             })
             .catch(error => {
@@ -145,7 +146,7 @@ export default function VerifyEmail({ status, nis }) {
                             className="mt-1 block w-full"
                             autoComplete="otp"
                             isFocused={true}
-                            onChange={(e) => setData("otp", e.target.value)}
+                            onChange={(e) => setData("nis", e.target.value)}
                             required
                         />
                         <InputError message={errors.nis} className="mt-2" />

@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\Result;
 use App\Http\Controllers\VoterController;
+use App\Http\Controllers\ResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,4 @@ Route::post('/login',[VoterController::class, 'login'])->middleware('verifyEmail
 Route::post('/logout',[VoterController::class, 'logout'])->middleware(['verifyEmail', 'login']);
 Route::post('/resend-otp', [VoterController::class, 'resendOtp']);
 Route::post('/otp/verify',[VoterController::class, 'verify']);
+Route::get('/coba', [ResultController::class,'getVoters']);

@@ -14,8 +14,11 @@ class VoterSeeder extends Seeder
     public function run(): void
     {
         DB::table('voters')->insert([
-            'nis' => '20199',
-            'name' => 'Ikhsandi'
+            ['nis' => '20199', 
+            'name' => 'Ikhsandi'],
+            ['nis' => '20213',
+            'name' => 'Rubben']
+            
         ]);
     }
 }

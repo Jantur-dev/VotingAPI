@@ -22,12 +22,10 @@ Route::middleware('guest')->group(function () {
     Route::get('register', [VoterController::class, 'PageLogin'])
     ->name('register');
     
-    // Route::post('register', [VoterController::class, 'register']);
-    
     Route::get('login', [VoterController::class, 'PageLogin'])
                 ->name('login');
 
-    Route::post('login', [VoterController::class, 'login']);
+    Route::post('login', [VoterController::class, 'login'])->name('login');
 
     Route::get('resend-otp', [VoterController::class, 'PageReSendOtp'])
                 ->name('resend.otp');
@@ -35,8 +33,8 @@ Route::middleware('guest')->group(function () {
     Route::post('resend-otp', [VoterController::class, 'resendOtp'])
                 ->name('resend.otp');
 
-    Route::get('verify', [NewPasswordController::class, 'create'])
-                ->name('verify');
+    // Route::get('verify', [NewPasswordController::class, 'create'])
+    //             ->name('verify');
 
     Route::post('verify', [VoterController::class, 'verify'])
                 ->name('verify');

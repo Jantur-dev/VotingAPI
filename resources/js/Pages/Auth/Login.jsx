@@ -5,23 +5,26 @@ import { kertaslogin, arrowleft } from "../../assets";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Inertia } from "@inertiajs/inertia";
 
-export default function Login({ status, value }) {
+export default function Login({ status, value, gagal }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         nis: "",
         email: "",
         otp: "",
     });
     const [modalIsOpen, setModalIsOpen] = useState(
-        status === null ? false : true
+        false
     );
+    const [statuase, setStatuse] = useState(false)
+    // const [statuse, setStatuse] = useState('false');
 
     const openModal = () => {
         setModalIsOpen(true);
+        // window.location.href = '/login'
     };
 
     const closeModal = () => {
         setModalIsOpen(false);
-        Inertia.visit("/login");
+        Inertia.visit("/register");
     };
 
     (function () {
@@ -29,33 +32,62 @@ export default function Login({ status, value }) {
             window.location.href = "/";
         }
     })();
-    let statuse
+    // let statuse
     const hasOtp = () => {
         if (value.otp == data.otp) {
             localStorage.setItem("_login", value.otp);
             localStorage.setItem("_name", value.name);
         } else {
-            statuse = true
-            openModal(true)
+            openModal()
         }
     };
 
+    // const submit = (e) => {
+    //     e.preventDefault();
+    //     if(!statuase) {
+    //         post(route("register"), {   
+    //             onSuccess: (data) => {
+    //                 const statusSal = data.props.status;
+    //                 statuase = true
+    //                 console.log(statuase);
+    //                 if (statusSal === true) {
+    //                     //
+    //                 } else {
+    //                     console.log('salah');
+    //                 }
+    //             },
+    //             onError: () => {
+    //                 openModal()
+    //             }, 
+    //             onProgress: () => {
+    //                 statuase = true
+    //             }
+    //         });
+    //     } else {
+    //         post(route("verify"), {
+    //             onProgress: hasOtp(),
+    //             onSuccess: post(route("login")),
+    //         });
+    //     }
+    // };
+
     const submit = (e) => {
         e.preventDefault();
-        if (status == null) {
+        if (status == false) {
             post(route("register"), {
+                onError: () => {
+                    openModal()
+                },
+                onSuccess: () => setStatuse(true)
             });
         } else {
             post(route("verify"), {
-                onError: (
-                    <ModalVote
-                        isOpen={true}
-                        closeModal={closeModal}
-                        success={false}
-                    />
-                ),
+                onError: () => {
+                    openModal()
+                },
                 onProgress: hasOtp(),
-                onSuccess: post(route("login")),
+                onSuccess: post(route("login"))
+            
             });
         }
     };
@@ -70,12 +102,18 @@ export default function Login({ status, value }) {
                     success={false}
                 />
             )}
-            {statuse && (<ModalVote
+            {gagal && (
+                <ModalVote
                     isOpen={modalIsOpen}
                     closeModal={closeModal}
                     success={false}
                 />
             )}
+            <ModalVote
+                isOpen={modalIsOpen}
+                closeModal={closeModal}
+                success={false}
+            />
             <div className="bg-primary rounded-b-lg fixed top-0 left-0 right-0 p-3 sm:h-[90px] ml:h-[100px] lg:h-[100px] z-9999">
                 <div className={`${styles.paddingX} ${styles.flexCenter}`}>
                     <div className={`${styles.boxWidth} `}>
@@ -148,7 +186,7 @@ export default function Login({ status, value }) {
                                 }
                                 className="lg:w-[450px] flex text-primary font-semibold border-2 shadow-pit xxs:px-4 md:px-6 py-3 rounded-md mb-[40px]"
                             />
-                            {status && (
+                            {statuase && (
                                 <input
                                     type="text"
                                     placeholder="Masukan OTP"
@@ -181,4 +219,5 @@ export default function Login({ status, value }) {
             </div>
         </div>
     );
+
 }

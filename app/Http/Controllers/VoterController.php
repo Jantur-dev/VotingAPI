@@ -23,7 +23,9 @@ class VoterController extends Controller
      * Display a listing of the resource.
      */
     public function PageLogin(): Response {
-        return Inertia::render("Auth/Login");
+        return Inertia::render("Auth/Login", [
+            'status' => false
+        ]);
     }
     public function PageReSendOtp(): Response {
         return Inertia::render("Auth/Otp");
@@ -78,7 +80,7 @@ class VoterController extends Controller
                 ]);
             }
 
-            return response()->json([
+            return Inertia::render('Auth/Login',[
                 'status' => false,
                 'msg' => 'Sudah melebihi request otp, gunakan otp terakhir, tetap gagal?. Mintalah kertas dari panitia untuk vote',
                 'value' => [
@@ -87,9 +89,10 @@ class VoterController extends Controller
             ]);
         }
 
-        return response()->json([
+        return Inertia::render("Auth/Login", [
             'status' => false,
-            'msg' => 'Gagal. Coba ulangi nanti'
+            'gagal' => true,
+            'errors' => 'Gagal. Coba ulangi lagi'
         ]);
     }
 
@@ -212,7 +215,7 @@ class VoterController extends Controller
             ]);
         }
 
-        return response()->json([
+        return Inertia::render('Auth/Login', [
             'status' => false,
             'msg' => 'gagal login, coba lagi'
         ]);

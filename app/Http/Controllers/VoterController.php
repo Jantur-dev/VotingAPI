@@ -244,6 +244,7 @@ class VoterController extends Controller
         if ($voter->vote_status != 'SUDAH') {
             if (isset($candidate)) {
                 $voter->candidateNis = $candidate->nis;
+                $voter->voted_at = Carbon::now();
                 $voter->candidate = $candidate->name;
                 $voter->vote_status = 'SUDAH';
                 $voter->update();
@@ -258,7 +259,7 @@ class VoterController extends Controller
                 //     'msg' => 'Berhasil vote'
                 // ]);
 
-                return Inertia::render('App', [
+                return Inertia::render('Vote/Votes', [
                     'status' => true,
                     'msg' => 'Berhasil vote'
                 ]);
@@ -271,6 +272,7 @@ class VoterController extends Controller
 
             return Inertia::render('Vote/Votes', [
                 'status' => false,
+                'gagal' => true,
                 'msg' => 'Gagal vote. Coba lagi.'
             ]);
         }
@@ -279,7 +281,8 @@ class VoterController extends Controller
         //     'msg' => 'Gagal vote. Kamu sudah vote, tidak bisa vote 2x'
         // ], 406);
 
-        return Inertia::render('App', [
+        return Inertia::render('Vote/Votes', [
+            'gagal' => true,
             'status' => false,
             'msg' => 'Gagal vote. Kamu sudah vote, tidak bisa vote 2x'
         ]);

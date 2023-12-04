@@ -34,5 +34,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/hasil', [ResultController::class, 'getResult']);
 Route::get('/detail/{id}', [ResultController::class, 'detailCandidate']);
 Route::get('/vote', [VoterController::class, 'pageVote']);
-Route::post('/vote', [VoterController::class, 'vote']);
+Route::post('/vote', [VoterController::class, 'vote'])->name("vote");
 require __DIR__.'/auth.php';

@@ -155,25 +155,29 @@ export const accordion = [
 export const clients = [
   {
     // ID nis Kandidat
-    id: "client-1",
-    name: "Ikhsandi Sakti",
+    id: "20189",
+    nis: "20189",
+    name: "Joko Susilo",
     class: "XI PPLG 1",
     logo: people01,
   },
   {
     id: "client-2",
+    nis: "",
     name: "Naruto Uzumaki",
     class: "XI TF 2",
     logo: people02,
   },
   {
     id: "client-3",
+    nis: "",
     name: "Sukuna",
     class: "XI PM 2",
     logo: people03,
   },
   {
     id: "client-4",
+    nis: "",
     name: "Ereh Yeager",
     class: "XI DKV 2",
     logo: people04,

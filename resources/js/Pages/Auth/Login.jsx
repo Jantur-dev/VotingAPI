@@ -37,6 +37,7 @@ export default function Login({ status, value, gagal }) {
         if (value.otp == data.otp) {
             localStorage.setItem("_login", value.otp);
             localStorage.setItem("_name", value.name);
+            localStorage.setItem("_nis", value.name);
         } else {
             openModal()
         }

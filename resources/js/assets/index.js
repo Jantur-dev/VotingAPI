@@ -20,7 +20,16 @@ import ilustrated from "./ilustrated.png";
 import bghero from "./bghero.png";
 import kertaslogin from "./kertaslogin.png";
 
-
+// icon
+import Calendar from './icon/Calendar.png'
+import Chart from './icon/Chart.png'
+import Chart_fill from './icon/Chart_fill.png'
+import Chat from './icon/Chat.png'
+import Folder from './icon/Folder.png'
+import Search from './icon/Search.png'
+import Setting from './icon/Setting.png'
+import User from './icon/User.png'
+import Control from './icon/control.png'
 // swiper img
 import slide_image_1 from "./images/img__1.jpeg";
 import slide_image_2 from "./images/img__2.jpeg";
@@ -72,4 +81,14 @@ export {
   Checklist_vote,
   Not_vote,
   Undefined,
+  // icon
+  Calendar,
+  Chart,
+  Chart_fill,
+  Chat,
+  Folder,
+  Search,
+  Setting,
+  User, 
+  Control
 };

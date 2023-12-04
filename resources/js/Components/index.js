@@ -11,6 +11,7 @@ import Hero from "./hero/Hero";
 import Check from "./Cek Status/Check";
 import Accordion from "./dropdown/Accordion";
 import Chart from "./chart/Chart";
+import Sidebar from "./sidebar/Sidebar";
 // Modal
 import ModalVote from "./modal/ModalVote";
 import ModalUnduh from "./modal/ModalUnduh";
@@ -21,4 +22,5 @@ import Detail from "./kandidatDetail/Detail";
 
 
 
-export { Navbar, Accordion, Clients, Reminder, Vote,  Gallery, Login, ModalVote, ModalUnduh, ModalCek,  Rembutton, Chart, Check, Step, Footer, Hero, Detail };
+
+export { Navbar, Accordion, Clients, Reminder, Vote,  Gallery, Login, ModalVote, ModalUnduh, ModalCek,  Rembutton, Chart, Check, Step, Footer, Hero, Detail, Sidebar };

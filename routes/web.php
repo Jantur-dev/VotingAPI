@@ -21,7 +21,7 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return Inertia::render('App');
-});
+})->name('/');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

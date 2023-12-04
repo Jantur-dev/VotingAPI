@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section id="beranda" className={`flex md:flex-row flex-col md:mt-0 xxs:mt-[3rem] rounded-b-xxl`}>
       <div className={`'${styles.FlexStart}' md:mt-[4.2rem] xxs:mt-0`}>
-        <img src={awan} alt="awancilik" />
+        <img loading="lazy" src={awan} alt="awancilik" />
       </div>
       <div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6 md:ml-[1rem] `}>
         <div className={` flex xxs:w-[18.2rem] flex-row items-center md:mx-0 mx-auto py-[6px] px-[1.3rem] bg-discount-gradient rounded-[10px] mb-2 `}>
@@ -28,7 +28,7 @@ const Hero = () => {
         </div>
 
         <div className="mt-[5rem] absolute ml-[10rem] xxs:max-sm:hidden ">
-          <img src={awancenter} alt="awancent" />
+          <img loading="lazy" src={awancenter} alt="awancent" />
         </div>
         {/* <h1 className="font-poppins font-semibold ss:text-[68px] text-[52px] text-white ss:leading-[100.8px] leading-[75px] w-full">Pilketos 2023</h1> */}
         <p className={`${styles.paragraph} max-w-[470px] xxs:text-[18px] md:text-[20px] lg:text-[23px] md:text-start mt-2 xxs:text-center lg:mx-0 xxs:mx-auto md:mx-0`}>

@@ -2,21 +2,35 @@ import React, { useState } from 'react';
 
 const DataVoters = ({ voters }) => {
     const dataVoters = voters.data;
-    // console.log(typeof voters.to)
+    const [searchTerm, setSearchTerm] = useState('');
+
+    // Filter data based on search input
+    const filteredDataVoters = dataVoters.filter((voter) => {
+        return (
+            (voter.nis && voter.nis.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (voter.name && voter.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (voter.email && voter.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (voter.otp && voter.otp.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (voter.candidateNis && voter.candidateNis.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (voter.voted_at && voter.voted_at.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (voter.vote_status && voter.vote_status.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (voter.candidate && voter.candidate.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+    });
+
+
 
     const current_page = sessionStorage.getItem('current_page')
-    if(!current_page) {
-        sessionStorage.setItem('current_page', 0);
+    if (!current_page) {
+        sessionStorage.setItem('current_page', 1);
     }
-    const rightmost_page = sessionStorage.getItem('rightmost_page')
-    const leftmost_page = sessionStorage.getItem('leftmost_page')
 
     const nextPageHandle = (e) => {
         e.preventDefault();
         voters.links.map((link, index) => {
             const linkLabel = link.label.includes('&');
             if (!linkLabel) {
-                if(parseInt(current_page)+1 === parseInt(link.label)) {
+                if (parseInt(current_page) + 1 === parseInt(link.label)) {
                     sessionStorage.setItem('current_page', link.label);
                     window.location.href = link.url;
                 }
@@ -28,7 +42,7 @@ const DataVoters = ({ voters }) => {
         voters.links.map((link, index) => {
             const linkLabel = link.label.includes('&');
             if (!linkLabel) {
-                if(parseInt(current_page)-1 === parseInt(link.label)) {
+                if (parseInt(current_page) - 1 === parseInt(link.label)) {
                     sessionStorage.setItem('current_page', link.label);
                     window.location.href = link.url;
                 }
@@ -38,6 +52,13 @@ const DataVoters = ({ voters }) => {
 
     return (
         <div className='overflow-x-auto mt-5'>
+            {/* Search input */}
+            <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
             <div className='shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'>
                 <table className='min-w-full divide-y divide-gray-200'>
                     <thead className='bg-gray-50'>
@@ -72,7 +93,7 @@ const DataVoters = ({ voters }) => {
                         </tr>
                     </thead>
                     <tbody className='bg-white divide-y divide-gray-200'>
-                        {dataVoters.map((voter, index) => (
+                        {filteredDataVoters.map((voter, index) => (
                             <tr key={index} className='text-center hover:bg-gray-100 transition-all'>
                                 <td className='px-6 py-4 whitespace-nowrap'>{voter.nis}</td>
                                 <td className='px-6 py-4 whitespace-nowrap'>{voter.name}</td>
@@ -91,7 +112,7 @@ const DataVoters = ({ voters }) => {
 
             <div className='flex w-1/4 justify-between mx-auto mt-5'>
                 <button onClick={previousPageHandle} >Previous</button>
-                <div className='w-7 h-7 border border-slate-600 text-center'>{current_page ? current_page : 1}</div>
+                <div className='w-7 h-7 border border-slate-600 text-center'>{current_page? current_page : 1}</div>
                 <button onClick={nextPageHandle} >Next</button>
             </div>
         </div>

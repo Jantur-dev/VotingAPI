@@ -61,7 +61,7 @@ const DataCandidates = ({ candidates }) => {
                             <tr key={index} className='hover:bg-gray-100 transition-all'>
                                 <td className='px-6 py-4 whitespace-nowrap'>{candidate.nis}</td>
                                 <td className='px-6 py-4 whitespace-nowrap'>{candidate.name}</td>
-                                <td className={`px-6 py-4 whitespace-nowrap ${candidate.votes ? 'text-green-500' : 'text-red-500'}`}>{candidates.votes ? candidates.votes : '0'}</td>
+                                <td className={`px-6 py-4 whitespace-nowrap ${candidate.votes ? 'text-green-500' : 'text-red-500'}`}>{candidate.votes ? candidate.votes : '0'}</td>
                             </tr>
                         ))}
                     </tbody>

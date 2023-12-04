@@ -43,35 +43,6 @@ export default function Login({ status, value, gagal }) {
         }
     };
 
-    // const submit = (e) => {
-    //     e.preventDefault();
-    //     if(!statuase) {
-    //         post(route("register"), {   
-    //             onSuccess: (data) => {
-    //                 const statusSal = data.props.status;
-    //                 statuase = true
-    //                 console.log(statuase);
-    //                 if (statusSal === true) {
-    //                     //
-    //                 } else {
-    //                     console.log('salah');
-    //                 }
-    //             },
-    //             onError: () => {
-    //                 openModal()
-    //             }, 
-    //             onProgress: () => {
-    //                 statuase = true
-    //             }
-    //         });
-    //     } else {
-    //         post(route("verify"), {
-    //             onProgress: hasOtp(),
-    //             onSuccess: post(route("login")),
-    //         });
-    //     }
-    // };
-
     const submit = (e) => {
         e.preventDefault();
         if (status == false) {

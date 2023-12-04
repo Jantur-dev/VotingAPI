@@ -18,7 +18,7 @@ const Clients = () => (
           <div key={client.id} className="relative xxs:mx-auto md:mx-none h-[24.5rem] my-5">
             <div className={`relative flex-1 flex-col justify-around ${styles.flexCenter} xxs:min-w-[292px] min-w-[120px] mx-[.5rem] my-1 px-6 py-[2rem] rounded-lg border-b-4 shadow-pit border-blue-900 bg-[#FFFFFF]`}>
               <div className="flex flex-col bg-primary">
-                <img src={client.logo} alt="client_logo" className="xxs:w-[192px] object-contain border-lg bg-white" />
+                <img loading="lazy" src={client.logo} alt="client_logo" className="xxs:w-[192px] object-contain border-lg bg-white" />
                 <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center"></div>
               </div>
               <div className="flex flex-col items-center mt-3" key={client.id}>

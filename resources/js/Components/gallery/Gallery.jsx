@@ -54,25 +54,25 @@ const Gallery = () => {
           modules={[EffectCoverflow, Pagination, Navigation]}
           className='swiper_container'>
           <SwiperSlide>
-            <img src={slide_image_1} alt='slide_image' />
+            <img src={slide_image_1} alt='slide_image' loading="lazy" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slide_image_2} alt='slide_image' />
+            <img src={slide_image_2} alt='slide_image' loading="lazy" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slide_image_3} alt='slide_image' />
+            <img src={slide_image_3} alt='slide_image' loading="lazy" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slide_image_4} alt='slide_image' />
+            <img src={slide_image_4} alt='slide_image' loading="lazy" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slide_image_5} alt='slide_image' />
+            <img src={slide_image_5} alt='slide_image' loading="lazy" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slide_image_6} alt='slide_image' />
+            <img src={slide_image_6} alt='slide_image' loading="lazy" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slide_image_7} alt='slide_image' />
+            <img src={slide_image_7} alt='slide_image' loading="lazy" />
           </SwiperSlide>
 
           <div className='slider-controler'>

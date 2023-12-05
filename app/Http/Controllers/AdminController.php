@@ -20,7 +20,7 @@ class AdminController extends Controller
     }
 
     public function voters() {
-        $voters = Voter::where('nis', '!=', '00001')->paginate(8);
+        $voters = Voter::where('nis', '!=', '00001')->paginate(5);
         // dd($voters);
         return Inertia::render('Admin/Voters/Voters', [
             'voters' => $voters
@@ -28,9 +28,33 @@ class AdminController extends Controller
     }
 
     public function candidates() {
-        $candidates = Candidate::orderBy('votes', 'desc')->take(8)->get();
+        // $candidates = Candidate::orderBy('votes', 'desc')->take(3)->get();
+        $candidates = Candidate::orderBy('votes', 'desc')->paginate(5);
         return Inertia::render('Admin/Candidates/Candidates', [
             'candidates' => $candidates
         ]);
     }
+
+    public function tambah() {
+        return Inertia::render('Admin/Tambah/MainTambah');
+    }
+
+    public function createVoter(Request $request) {
+        if ($request->isMethod('post')) {
+            Voter::create([
+                'nis' => $request->nis,
+                'name' => $request->name
+            ]);
+        }
+    }
+    
+    public function createCandidate(Request $request) {
+        if ($request->isMethod('post')) {
+            Candidate::create([
+                'nis' => $request->nis,
+                'name' => $request->name
+            ]);
+        }
+    }
+    
 }

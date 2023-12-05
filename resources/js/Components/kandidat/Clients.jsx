@@ -32,7 +32,7 @@ const Clients = () => (
               {/* <Button /> */}
             </div>
             {/* <button className="transition ease-in-out delay-150 absolute bottom-0 left-1/2 transform -translate-x-1/2 font-semibold text-[#FFFFFF] text-[20px] uppercase mt-[6rem] bg-primary px-6 py-1 rounded-lg hover:scale-110 hover:bg-secondary duration-300">Detail</button> */}
-            <Link type="button" as="button" href={isLogin ? `/detail/${client.id}` : "/"} className="transition ease-in-out delay-150 absolute bottom-0 left-1/2 transform -translate-x-1/2 font-semibold text-[#FFFFFF] text-[20px] uppercase mt-[6rem] bg-primary px-6 py-1 rounded-lg hover:scale-110 hover:bg-secondary duration-300"> Detail </Link>
+            <Link type="button" as="button" href={isLogin ? `/detail/${client.nis}` : "/"} className="transition ease-in-out delay-150 absolute bottom-0 left-1/2 transform -translate-x-1/2 font-semibold text-[#FFFFFF] text-[20px] uppercase mt-[6rem] bg-primary px-6 py-1 rounded-lg hover:scale-110 hover:bg-secondary duration-300"> Detail </Link>
           </div>
         ))}
       </div>

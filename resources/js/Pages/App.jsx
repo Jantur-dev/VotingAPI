@@ -5,7 +5,7 @@ import { Head } from "@inertiajs/react";
 // import { dataSuara } from "./constants"; 
 // import FeedbackCard from "./components/FeedbackCard";
 
-const isLogin = localStorage.getItem('_name')
+const isLogin = localStorage.getItem('_login')
 
 const App = () => (
   <div className="bg-white w-full m-auto">
@@ -29,7 +29,7 @@ const App = () => (
       </div>
     </div>
 
-    <div  className={`xxs:hidden md:flex ${styles.flexCenter} md:relative z-100 xxs:top-[5rem] md:top-[2rem] bg-white `}>
+    <div className={`xxs:hidden md:flex ${styles.flexCenter} md:relative z-100 xxs:top-[5rem] md:top-[2rem] bg-white `}>
       <Step />
       {/* <Login/> */}
     </div>
@@ -39,8 +39,8 @@ const App = () => (
         <div>
           <Clients />
         </div>
-        <Chart />
         <Check />
+        <Chart />
         <Gallerycpy />
         <Accordion />
         <Reminder />
@@ -51,5 +51,7 @@ const App = () => (
     </div>
   </div>
 );
+
+// Ubah scetion check vote? Dengan ???
 
 export default App;

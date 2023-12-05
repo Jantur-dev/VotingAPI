@@ -47,11 +47,11 @@ const AdminDashboard = ({ voters, candidates }) => {
                             <tr key={index} className='text-center hover:bg-gray-100 transition-all'>
                             <td className='px-6 py-4 whitespace-nowrap'>{voter.nis}</td>
                             <td className='px-6 py-4 whitespace-nowrap'>{voter.name}</td>
-                            <td className={`px-6 py-4 whitespace-nowrap ${voter.email ? '' : 'text-red-500'}`}>{voter.email ? voter.name : 'NULL'}</td>
+                            <td className={`px-6 py-4 text-sm ${voter.email ? '' : 'text-red-500'}`}>{voter.email ? voter.email : 'NULL'}</td>
                             <td className={`px-6 py-4 whitespace-nowrap ${voter.otp ? '' : 'text-red-500'}`}>{voter.otp ? voter.otp : 'NULL'}</td>
                             <td className={`px-6 py-4 whitespace-nowrap ${voter.candidateNis ? '' : 'text-red-500'}`}>{voter.candidateNis ? voter.candidateNis : 'NULL'}</td>
                             <td className={`px-6 py-4 whitespace-nowrap ${voter.active_status === '1' ? 'text-green-500' : 'text-red-500'}`}>{voter.active_status === '1' ? 'LOGIN' : '-'}</td>
-                            <td className={`px-6 py-4 whitespace-nowrap ${voter.voted_at ? '' : 'text-red-500'}`}>{voter.voted_at ? voter.voted_at : 'NULL'}</td>
+                            <td className={`px-6 py-4 text-sm ${voter.voted_at ? '' : 'text-red-500'}`}>{voter.voted_at ? voter.voted_at : 'NULL'}</td>
                             <td className={`px-6 py-4 whitespace-nowrap ${voter.vote_status === 'SUDAH' ? 'text-green-500' : 'text-red-500'}`}>{voter.vote_status}</td>
                             <td className={`px-6 py-4 whitespace-nowrap ${voter.candidate ? '' : 'text-red-500'}`}>{voter.candidate ? voter.candidate : 'NULL'}</td>
                         </tr>

@@ -9,11 +9,11 @@ use App\Models\Candidate;
 use Illuminate\Http\Request; 
 class ResultController extends Controller 
 { 
-    public function detailCandidate($id) {
+    public function detailCandidate($nis) {
         // $candidate = Candidate::where($id)->first();
         
         return Inertia::render('Profile/Detail', [
-            'id' => $id
+            'nis' => $nis
         ]);
     }
     

@@ -21,7 +21,8 @@ const Sidebar = (props) => {
     const Menus = [
         { title: "Dashboard", src: Folder },
         { title: "Voters", src: Chart_fill, gap: true },
-        { title: "Candidates", src: User }
+        { title: "Candidates", src: User },
+        { title: "Tambah", src: Setting, gap: true }
     ];
 
     const handleItemClick = (index, e) => {
@@ -51,14 +52,14 @@ const Sidebar = (props) => {
                 <ul className="pt-6">
                     {Menus.map((Menu, index) => (
                         <li
-                        key={index}
-                        className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+                            key={index}
+                            className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
                         ${Menu.gap ? "mt-9" : "mt-2"} ${index === selectedItem ? "bg-gray-400" : ""} ${!open && "bg-light-white"
-                    } `}
-                    onClick={() => handleItemClick(index)}
-                    >
+                                } `}
+                            onClick={() => handleItemClick(index)}
+                        >
                             <img src={Menu.src} />
-                            <Link href={`${( Menu.title === 'Dashboard' ) ? '/admin': '/admin/' + Menu.title.toLowerCase() }`}>
+                            <Link href={`${(Menu.title === 'Dashboard') ? '/admin' : '/admin/' + Menu.title.toLowerCase()}`}>
                                 <span className={`${!open && "hidden"} origin-left duration-200`}>
                                     {Menu.title}
                                 </span>

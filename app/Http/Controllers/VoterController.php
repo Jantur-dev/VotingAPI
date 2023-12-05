@@ -227,13 +227,13 @@ class VoterController extends Controller
         if(isset($voter) && ($voter->active_status == '1')) {
             $voter->active_status = '0';
             $voter->update();
-            return response()->json([
+            return Inertia::render('App', [
                 'status' => true,
                 'msg' => 'Berhasil logout'
             ]);
         }
 
-        return response()->json([
+        return Inertia::render('App', [
             'status' => false,
             'msg' => 'gagal logout, coba lagi'
         ]);

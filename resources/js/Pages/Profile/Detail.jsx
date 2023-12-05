@@ -4,10 +4,10 @@ import { Navbar, Footer } from "@/Components";
 import styles from "../../../css/style";
 import { arrowleft } from "../../assets";
 
-const Detail = ({ id }) => {
-    console.log(id);
+const Detail = ({ nis }) => {
+    console.log(nis);
 
-    const selectedPerson = vision.find((person) => person.id === id);
+    const selectedPerson = vision.find((person) => person.nis === nis);
 
     if (!selectedPerson) {
         // Handle the case where no person is found with the given id

@@ -163,21 +163,21 @@ export const clients = [
   },
   {
     id: "client-2",
-    nis: "",
+    nis: '20129',
     name: "Naruto Uzumaki",
     class: "XI TF 2",
     logo: people02,
   },
   {
     id: "client-3",
-    nis: "",
+    nis: '20089',
     name: "Sukuna",
     class: "XI PM 2",
     logo: people03,
   },
   {
     id: "client-4",
-    nis: "",
+    nis: '20191',
     name: "Ereh Yeager",
     class: "XI DKV 2",
     logo: people04,
@@ -186,14 +186,16 @@ export const clients = [
 
 export const vision = [
   {
+    nis: '20189',
     id: "client-1",
-    name: "Ikhsandi Saktiawan",
+    name: "Joko Susilo",
     visi: "Menjadi Pemimpin Terbaik",
     proker: "Program Kerja yang terukur",
     misi: "Mewujudkan keadilan dan kesejahteraan untuk semua",
     image: people01,
   },
   {
+    nis: '20129',
     id: "client-2",
     name: "Naruto Uzumaki",
     visi: "Dattebayo",
@@ -202,6 +204,7 @@ export const vision = [
     image: people02,
   },
   {
+    nis: '20089',
     id: "client-3",
     name: "Sukuna",
     visi: "Mengangkat derajat bangsa",
@@ -210,6 +213,7 @@ export const vision = [
     image: people03,
   },
   {
+    nis: '20191',
     id: "client-4",
     name: "Ereh Yeager",
     visi: "Tatakae",

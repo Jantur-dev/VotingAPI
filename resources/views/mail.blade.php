@@ -30,7 +30,7 @@
     <img class="hero" src="https://1.bp.blogspot.com/-4bzTfd-QAgE/XCBFzgqiswI/AAAAAAAARIM/8t5XIzfyx48EDTvadLkakiYzDSRAaNlZQCLcBGAs/s1600/SMK%2BN%2B1%2BPURWOKERTO.png" alt="">
     <h1>VoteSmecon</h1>
     <h3>Hi, {{ $name }}</h3>
-    <p>Selamat datang di Vote Smecon. Verifikasi lebih dulu untuk lanjut.</p>
+    <p>Selamat datang di Vote Smecone. Verifikasi lebih dulu untuk lanjut.</p>
     <p>Copy kode ini untuk lanjut verifikasi <span>{{$otp}}</span></p>
     <section></section>
 </body>

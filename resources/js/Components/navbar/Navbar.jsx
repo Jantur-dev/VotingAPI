@@ -3,9 +3,11 @@ import { useState } from "react";
 import { close, logo, menu } from "@/assets";
 import { navLinks } from "@/constants";
 import Button from "../Button";
+import Logout from '../Logout/Logout';
 
 
 const Navbar = (user) => {
+  const isLogin = localStorage.getItem('_name');
   const [active, setActive] = useState("Beranda");
   const [toggle, setToggle] = useState(false);
 
@@ -28,6 +30,13 @@ const Navbar = (user) => {
       </ul>
       <div className="md:flex hidden">
         <Button className="hidden flex-1 md:hidden"></Button>
+        {
+          isLogin ? (
+            <Logout m='mt-2 ml-5' />
+          ) : (
+            ''
+          )
+        }
       </div>
 
       <div className="md:hidden flex flex-1 justify-end  items-center">
@@ -47,6 +56,13 @@ const Navbar = (user) => {
               // console.log(`{nav.id}`)
             ))}
             <Button className="mt-4"></Button>
+            {
+              isLogin ? (
+                <Logout m='mt-2' />
+              ) : (
+                ''
+              )
+            }
           </ul>
         </div>
       </div>

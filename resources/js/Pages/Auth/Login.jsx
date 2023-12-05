@@ -161,6 +161,7 @@ export default function Login({ status, value, gagal }) {
                             {statuase && (
                                 <input
                                     type="text"
+                                    required
                                     placeholder="Masukan OTP"
                                     name="otp"
                                     value={data.otp}
@@ -170,11 +171,11 @@ export default function Login({ status, value, gagal }) {
                                     className="lg:w-[450px] flex text-primary font-semibold border-2 shadow-pit xxs:px-4 md:px-6 py-3 rounded-md"
                                 />
                             )}
-                            {value ? (
+                            {/* {value ? (
                                 <p>Nilai prop: {value.otp}</p>
                             ) : (
                                 <p>Belum ada OTP</p>
-                            )}
+                            )} */}
                             <button
                                 type="submit"
                                 className="transition ease-in-out delay-150 duration-200 mt-[4rem] uppercase text-white font-bold text-[18px] border-2 bg-primary xxs:w-[265px] md:w-[270px] lg:w-[450px] md:px-none md:px-[1rem] py-[1rem] rounded-xxl mx-auto hover:bg-secondary hover:scale-110"

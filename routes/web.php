@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/hasil', [ResultController::class, 'getResult']);
-Route::get('/detail/{id}', [ResultController::class, 'detailCandidate']);
+Route::get('/detail/{nis}', [ResultController::class, 'detailCandidate']);
 Route::get('/vote', [VoterController::class, 'pageVote']);
 Route::post('/vote', [VoterController::class, 'vote'])->name("vote");
 
@@ -41,8 +41,14 @@ Route::post('/vote', [VoterController::class, 'vote'])->name("vote");
 //     return Inertia::render('Admin/Admin');
 // });
 
+Route::post('/logout', [VoterController::class, 'logout'])->name('logout');
+
 Route::get('/admin', [AdminController::class, 'dashboard']);
 Route::get('/admin/voters', [AdminController::class, 'voters']);
 Route::get('/admin/candidates', [AdminController::class, 'candidates']);
+
+Route::get('/admin/tambah', [AdminController::class, 'tambah'])->name('tambah');
+Route::post('/admin/tambah/voter', [AdminController::class, 'createVoter'])->name('tambahVoter');
+Route::post('/admin/tambah/candidate', [AdminController::class, 'createCandidate'])->name('tambahCandidate');
 
 require __DIR__.'/auth.php';

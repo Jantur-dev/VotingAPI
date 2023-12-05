@@ -93,7 +93,7 @@ const Vote = ({ status, msg, gagal}) => {
                         {clients.map((client) => (
                             <div
                                 className="relative xxs:mx-auto md:mx-none h-[24.5rem] my-5"
-                                key={client.id}
+                                key={client.nis}
                             >
                                 <div
                                     className={`relative flex-1 flex-col justify-around ${styles.flexCenter} xxs:min-w-[292px] min-w-[120px] mx-[.5rem] my-1 px-6 py-[1.5rem] rounded-lg border-b-4 shadow-pit border-blue-900 bg-[#FFFFFF]`}
@@ -108,7 +108,7 @@ const Vote = ({ status, msg, gagal}) => {
                                     </div>
                                     <div
                                         className="flex flex-col items-center mt-3"
-                                        key={client.id}
+                                        key={client.nis}
                                     >
                                         <h3 className="font-poppins text-[18px] font-bold text-primary mt-2">
                                             {client.name}
@@ -121,27 +121,27 @@ const Vote = ({ status, msg, gagal}) => {
                                         <form>
                                             <input
                                                 type="radio"
-                                                id={`${client.id}`}
+                                                id={`${client.nis}`}
                                                 name="candidate"
                                                 className="absolute bottom-0 left-1/2 transform -translate-x-1/2 sr-only"
                                                 checked={
                                                     selectedCandidate ===
-                                                    client.id
+                                                    client.nis
                                                 }
                                                 onChange={() =>
                                                     handleCandidateSelect(
-                                                        client.id
+                                                        client.nis
                                                     )
                                                 }
                                             />
                                             <label
-                                                htmlFor={`${client.id}`}
+                                                htmlFor={`${client.nis}`}
                                                 className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -mb-12 cursor-pointer"
                                             >
                                                 <span
                                                     className={`inline-block w-10 h-8 border-4 rounded-full transition-all duration-300 ${
                                                         selectedCandidate ===
-                                                        client.id
+                                                        client.nis
                                                             ? "bg-blue-900 border-blue-900"
                                                             : "bg-white border-primary"
                                                     }`}

@@ -40,7 +40,7 @@ const App = () => (
           <Clients />
         </div>
         <Check />
-        <Chart />
+        {/* <Chart /> */}
         <Gallerycpy />
         <Accordion />
         <Reminder />

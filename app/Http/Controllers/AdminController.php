@@ -56,5 +56,30 @@ class AdminController extends Controller
             ]);
         }
     }
+
+    public function viewChart() {
+        $dataX = Candidate::pluck('name')->all();
+        /* 
+            0 => "Andi Jokoni"
+            1 => "Joy Budi"
+            2 => "Joko Susilo"
+            3 => "Budiono"
+            4 => "Jokono"
+            5 => "Susilo Budini"
+        */
+        $dataY = Candidate::pluck('votes')->all();
+        /* 
+            0 => 100 -> punya Andi Jokoni
+            1 => 120 => Joy Budi
+            2 => 200 => <urut...>
+            3 => 250
+            4 => null
+            5 => null
+        */
+        return Inertia::render('Admin/Chart/MainChart', [
+            'dataX' => $dataX,
+            'dataY' => $dataY
+        ]);
+    }
     
 }

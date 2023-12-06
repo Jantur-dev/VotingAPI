@@ -46,6 +46,7 @@ Route::post('/logout', [VoterController::class, 'logout'])->name('logout');
 Route::get('/admin', [AdminController::class, 'dashboard']);
 Route::get('/admin/voters', [AdminController::class, 'voters']);
 Route::get('/admin/candidates', [AdminController::class, 'candidates']);
+Route::get('/admin/chart', [AdminController::class, 'viewChart']);
 
 Route::get('/admin/tambah', [AdminController::class, 'tambah'])->name('tambah');
 Route::post('/admin/tambah/voter', [AdminController::class, 'createVoter'])->name('tambahVoter');

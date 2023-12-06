@@ -10,8 +10,8 @@ import {
     Setting,
     User,
     Control,
-    logo
-} from '../../assets'
+    logo,
+} from "../../assets";
 
 const Sidebar = (props) => {
     const [open, setOpen] = useState(true);
@@ -22,7 +22,8 @@ const Sidebar = (props) => {
         { title: "Dashboard", src: Folder },
         { title: "Voters", src: Chart_fill, gap: true },
         { title: "Candidates", src: User },
-        { title: "Tambah", src: Setting, gap: true }
+        { title: "Chart", src: Chart },
+        { title: "Tambah", src: Setting, gap: true },
     ];
 
     const handleItemClick = (index, e) => {
@@ -33,8 +34,9 @@ const Sidebar = (props) => {
     return (
         <div className="flex">
             <div
-                className={` ${open ? "w-72" : "w-20 "
-                    } bg-dark-purple h-screen p-5  pt-8 relative duration-300`}
+                className={` ${
+                    open ? "w-72" : "w-20 "
+                } bg-dark-purple h-screen p-5  pt-8 relative duration-300`}
             >
                 <img
                     src={Control}
@@ -45,8 +47,9 @@ const Sidebar = (props) => {
                 <div className="flex gap-x-4 items-center">
                     <img
                         src={logo}
-                        className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"
-                            }`}
+                        className={`cursor-pointer duration-500 ${
+                            open && "rotate-[360deg]"
+                        }`}
                     />
                 </div>
                 <ul className="pt-6">
@@ -54,13 +57,26 @@ const Sidebar = (props) => {
                         <li
                             key={index}
                             className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-                        ${Menu.gap ? "mt-9" : "mt-2"} ${index === selectedItem ? "bg-gray-400" : ""} ${!open && "bg-light-white"
-                                } `}
+                        ${Menu.gap ? "mt-9" : "mt-2"} ${
+                                index === selectedItem ? "bg-gray-400" : ""
+                            } ${!open && "bg-light-white"} `}
                             onClick={() => handleItemClick(index)}
                         >
                             <img src={Menu.src} />
-                            <Link href={`${(Menu.title === 'Dashboard') ? '/admin' : '/admin/' + Menu.title.toLowerCase()}`}>
-                                <span className={`${!open && "hidden"} origin-left duration-200`}>
+                            <Link
+                                type="button"
+                                as="button"
+                                href={`${
+                                    Menu.title === "Dashboard"
+                                        ? "/admin"
+                                        : "/admin/" + Menu.title.toLowerCase()
+                                }`}
+                            >
+                                <span
+                                    className={`${
+                                        !open && "hidden"
+                                    } origin-left duration-200`}
+                                >
                                     {Menu.title}
                                 </span>
                             </Link>
@@ -69,7 +85,9 @@ const Sidebar = (props) => {
                 </ul>
             </div>
             <div className="h-screen flex-1 p-7">
-                <h1 className="text-2xl font-semibold ">Page {props.pageName}</h1>
+                <h1 className="text-2xl font-semibold ">
+                    Page {props.pageName}
+                </h1>
                 {props.page}
             </div>
         </div>

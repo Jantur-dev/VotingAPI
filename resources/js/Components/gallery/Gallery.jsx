@@ -21,7 +21,7 @@ import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 
 const Gallery = () => {
   return (
-    <section className={`shadow-pit  rounded-lg my-[8rem] pt-[2rem]`}>
+    <section id="galeri" className={`shadow-pit  rounded-lg my-[8rem] pt-[2rem]`}>
       <div className={`flex ${styles.flexCenter} flex-col `}>
         <h1
           className={`text-primary font-bold uppercase xxs:text-[25px] md:text-[32px]`}>

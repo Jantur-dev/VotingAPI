@@ -10,8 +10,8 @@ export const navLinks = [
     title: "Kandidat",
   },
   {
-    id: "datasuara",
-    title: "Data Suara",
+    id: "galeri",
+    title: "Galery",
   },
   {
     id: "faq",
@@ -116,10 +116,6 @@ export const footerLinks = [
       {
         name: "SMK Negeri 1 Purwokerto",
         link: "https://smkn1purwokerto.sch.id/",
-      },
-      {
-        name: "Jantur Dev",
-        link: "https://github.com/Jantur-dev",
       },
       {
         name: "Bakaran Project",

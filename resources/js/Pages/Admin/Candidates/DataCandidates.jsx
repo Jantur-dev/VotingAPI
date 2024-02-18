@@ -16,7 +16,7 @@ const DataCandidates = ({ candidates }) => {
 
     const current_page = sessionStorage.getItem('current_page')
     if (!current_page) {
-        sessionStorage.setItem('current_page', 0);
+        sessionStorage.setItem('current_page', 1);
     }
 
     const nextPageHandle = (e) => {

@@ -2,21 +2,28 @@ import { Link } from '@inertiajs/react';
 import styles from '../../css/style';
 import { arrowleft } from "@/assets";
 const isLogin = localStorage.getItem('_name')
-const Rembutton = () => (
-<div className={`${styles.flexStart} bg-[#FFFFFF]p-[2px] rounded-[20px] cursor-pointer w-full mt-4 shadow-xl`}>
-    <div className={`${styles.flexStart} flex-row bg-primary rounded-[20px] w-[17rem] hover:scale-110 transition-all duration-300 ease-in-out`}>
-      <div className={`${styles.flexStart} flex`}>
-        <p className="font-poppins font-semibold text-[16px] leading-[23.4px] p-2">
-          <Link href={isLogin ? "/vote" : "/login"} type='button' as='button' className='tracking-wide text-white'>{isLogin ? (
-            "Vote Disini"
-          ) : (
-            "Login untuk memilih"
-          )}</Link>
-        </p>
-        <img src={arrowleft} alt="arrow-up" className="w-[20px] h-auto ml-2 rotate-180" />
-      </div>
-    </div>
-  </div>
-);
+const Rembutton = () => {
+  return (
+    <>
+      <Link href={isLogin ? '/vote' : '/login'} type="button" as='button'>
+        <div className={`${styles.flexStart} bg-[#FFFFFF]p-[2px] rounded-[20px] cursor-pointer w-full mt-4 shadow-xl`}>
+          <div className={`${styles.flexStart} flex-row bg-primary rounded-[20px] w-[17rem] hover:scale-110 transition-all duration-300 ease-in-out`}>
+            <div className={`${styles.flexStart} flex`}>
+              <p className="font-poppins font-semibold text-[16px] leading-[23.4px] p-2">
+                <Link href={isLogin ? "/vote" : "/login"} type='button' as='button' className='tracking-wide text-white'>{isLogin ? (
+                  "Vote Disini"
+                ) : (
+                  "Login untuk memilih"
+                )}
+                </Link>
+              </p>
+              <img src={arrowleft} alt="arrow-up" className="w-[20px] h-auto ml-2 rotate-180" />
+            </div>
+          </div>
+        </div>
+      </Link>
+    </>
+  )
+};
 
 export default Rembutton;
